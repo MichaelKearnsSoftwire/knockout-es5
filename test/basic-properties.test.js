@@ -106,6 +106,12 @@ describe('Basic properties', function () {
       assert.strictEqual( result, true, result.message );
     });
 
+    it('throws if a property name does not exist on the object', function () {
+      assert.throw(function() {
+        ko.track({a: 1, b: 2}, ['a', 'z']);
+      }, 'Property \'z\' does not exist on the object to be tracked');
+    });
+
     it('retains existing observable properties, wrapping them in a getter/setter', function() {
       var observable = ko.observable(123),
         obj = ko.track({ prop: observable });

@@ -150,6 +150,10 @@
         return;
       }
 
+      if (!obj.hasOwnProperty(prop)) {
+        throw new Error('Property \'' + prop + '\' does not exist on the object to be tracked');
+      }
+
       // Skip properties where descriptor can't be redefined
       if (Object.getOwnPropertyDescriptor(obj, prop).configurable === false){
         return;
